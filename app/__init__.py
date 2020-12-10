@@ -1,9 +1,11 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 from config import config
 
 db = SQLAlchemy()
+migrate = Migrate()
 
 def create_app(config_name='default'):
     app = Flask(__name__, instance_relative_config=True)
@@ -13,8 +15,8 @@ def create_app(config_name='default'):
     # config_name: development, test, production
 
     db.init_app(app)
+    migrate.init_app(app, db)
 
     from .views import api_bp
     app.register_blueprint(api_bp)
-    
     return app
