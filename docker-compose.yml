@@ -11,7 +11,9 @@ services:
             - .:/src
         depends_on:
             - db
+            - mqtt
         command: python3 run_dev.py
+    
     db:
         image: mysql/mysql-server:8.0
         restart: always
@@ -22,6 +24,25 @@ services:
         volumes:
             - mysql_volume:/var/lib/mysql
         command: ['--default-authentication-plugin=mysql_native_password', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    
+    mqtt:
+        image: eclipse-mosquitto
+        ports:
+            - 1883:1883
+        expose:
+            - 1883
+        restart: unless-stopped
+    
+    mqtt-client:
+        build:
+            context: .
+            args:
+                REQ_TXT: requirements.mqtt-client.txt
+        volumes:
+            - .:/src
+        depends_on:
+            - mqtt
+        command: python3 run_mqtt_client.py
 
 volumes:
     mysql_volume:

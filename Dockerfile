@@ -1,7 +1,9 @@
 FROM python:3.7.7
 ENV TZ=Asia/Taipei
 
+ARG REQ_TXT
 WORKDIR /src
-COPY requirements.txt .
-RUN pip install --upgrade pip && pip install -r requirements.txt
+COPY ${REQ_TXT:-requirements.txt} .
+RUN pip install --upgrade pip && pip install -r ${REQ_TXT:-requirements.txt}
+
 EXPOSE 8000
