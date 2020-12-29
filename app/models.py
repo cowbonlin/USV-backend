@@ -16,22 +16,37 @@ class Mission(db.Model):
 
 
 class RVehMis(db.Model):
-    __tablename__ = 'rvehmis'
+    __tablename__ = 'r_veh_mis'
     rvmid = db.Column(db.Integer, primary_key=True)
     mid = db.Column(db.Integer)
     vid = db.Column(db.Integer)
 
 
 class AnchorWaypoint(db.Model):
-    __tablename__ = 'anchorwaypoint'
+    __tablename__ = 'anchor_waypoint'
     aid = db.Column(db.Integer, primary_key=True)
     mid = db.Column(db.Integer)
     globalx = db.Column(db.DECIMAL(11,9))
     globaly = db.Column(db.DECIMAL(12,9))
+    uwbid = db.Column(db.Integer)
 
+
+class UwbModule(db.Model):
+    __tablename__ = 'uwb_module'
+    uwbid = db.Column(db.Integer, primary_key=True)
+    address = db.Column(db.Binary)
+    serial = db.Column(db.Binary)
+    # usage: u = UwbModule(address=b'\x6a\x25'); print(u.address.hex())
+
+class RUwbVeh(db.Model):
+    __tablename__ = 'r_uwb_veh'
+    mid = db.Column(db.Integer, primary_key=True)
+    vid = db.Column(db.Integer)
+    uwbid = db.Column(db.Integer)
+    loc = db.Column(db.String(32))
 
 class RAnchors(db.Model):
-    __tablename__ = 'ranchors'
+    __tablename__ = 'r_anchors'
     raid = db.Column(db.Integer, primary_key=True)
     mid = db.Column(db.Integer)
     aid1 = db.Column(db.Integer)
@@ -51,20 +66,26 @@ class VehState(db.Model):
 
 
 class VehStatsAnchor(db.Model):
-    __tablename__ = 'vehstatsanchor'
+    __tablename__ = 'vehstats_anchor'
     vsaid = db.Column(db.Integer, primary_key=True)
     vsid = db.Column(db.Integer)
     aid = db.Column(db.Integer)
-    commtype = db.Column(db.String(8))
+    commtypeid = db.Column(db.Integer)
     range = db.Column(db.Float)
     rssi = db.Column(db.Float)
 
 
 class RVehStateEncounter(db.Model):
-    __tablename__ = 'rvehstateencounter'
+    __tablename__ = 'r_vehstate_encounter'
     rvseid = db.Column(db.Integer, primary_key=True)
     vsid = db.Column(db.Integer)
     vsid2 = db.Column(db.Integer)
-    commtype = db.Column(db.String(8))
+    commtypeid = db.Column(db.Integer)
     range = db.Column(db.Float)
     rssi = db.Column(db.Float)
+
+
+class CommType(db.Model):
+    __tablename__ = 'commtype'
+    cid = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(32))
