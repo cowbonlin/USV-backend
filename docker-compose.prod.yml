@@ -1,7 +1,0 @@
-version: '3'
-services:
-    web:
-        command: gunicorn --worker-class eventlet -w 1 --bind 0.0.0.0:8000 'app:create_app(config_name="production")'
-    db:
-        ports:
-            - 3306:3306

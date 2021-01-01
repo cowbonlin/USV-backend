@@ -132,3 +132,5 @@ dmypy.json
 *.sublime-workspace
 
 *.sqlite
+
+docker-compose.override.yml

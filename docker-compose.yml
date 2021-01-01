@@ -12,15 +12,13 @@ services:
         depends_on:
             - db
             - mqtt
-        command: python3 run_dev.py
+        command: gunicorn --worker-class eventlet -w 1 --bind 0.0.0.0:8000 'app:create_app(config_name="production")'
     
     db:
         image: mysql/mysql-server:8.0
         restart: always
         env_file:
             - ./instance/mysql.env
-        ports:
-            - 3308:3306
         volumes:
             - mysql_volume:/var/lib/mysql
         command: ['--default-authentication-plugin=mysql_native_password', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
