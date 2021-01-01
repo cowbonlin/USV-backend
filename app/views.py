@@ -12,3 +12,4 @@ def helloword():
 def log_bp(bp):
     print("LOG:", bp)
     app.logger.info('loglog')
+    return 'hi'
