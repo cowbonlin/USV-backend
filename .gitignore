@@ -134,3 +134,4 @@ dmypy.json
 *.sqlite
 
 docker-compose.override.yml
+db/secret.env
