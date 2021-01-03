@@ -1,3 +1,4 @@
+from datetime import datetime
 from . import db
 
 
@@ -89,3 +90,11 @@ class CommType(db.Model):
     __tablename__ = 'commtype'
     cid = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32))
+
+
+class MqttRecord(db.Model):
+    __tablename__ = 'mqtt_record'
+    id = db.Column(db.Integer, primary_key=True)
+    topic = db.Column(db.String(32))
+    payload = db.Column(db.String(128))
+    created_at = db.Column(db.DateTime, default=datetime.now)
