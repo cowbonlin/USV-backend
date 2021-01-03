@@ -2,14 +2,14 @@ import paho.mqtt.client as mqtt
 from requests import get
 
 def on_connect(client, userdata, flags, rc):
-    print("Connected with result code "+str(rc), flush=True)
+    print("Connected with result code "+str(rc))
     client.subscribe("mytopic")
 
 def on_message(client, userdata, msg):
     payload = str(msg.payload)
-    print(f"{msg.topic} {payload}", flush=True)
     response = get(f'http://web:8000/log/{msg.topic}')
-    print(response, flush=True)
+    print("NEW MSG:", msg.topic, msg.payload)
+    print("RES:", response)
 
 
 if __name__ == '__main__':

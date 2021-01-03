@@ -7,6 +7,8 @@ services:
                 - APP_ENV=production
         ports:
             - "8000:8000"
+        environment:
+            - PYTHONUNBUFFERED=1
         volumes:
             - .:/src
         depends_on:
@@ -35,6 +37,8 @@ services:
             context: .
             args:
                 REQ_TXT: requirements.mqtt-client.txt
+        environment:
+            - PYTHONUNBUFFERED=1
         volumes:
             - .:/src
         depends_on:
