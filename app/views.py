@@ -42,6 +42,5 @@ def get_all_mqtt_records():
     records = MqttRecord.query.order_by(MqttRecord.created_at.desc()).limit(100)
     r_list = [{'topic': r.topic,
                'payload': r.payload,
-               'created_at': r.created_at.isoformat()} 
-        for r in records]
+               'created_at': r.created_at.isoformat()} for r in records]
     return jsonify(r_list)
