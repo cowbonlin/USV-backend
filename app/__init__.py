@@ -7,7 +7,6 @@ from config import config
 
 db = SQLAlchemy()
 migrate = Migrate()
-api = Api()
 
 def create_app(config_name='default'):
     app = Flask(__name__, instance_relative_config=True)
@@ -20,6 +19,7 @@ def create_app(config_name='default'):
     migrate.init_app(app, db)
 
     from app.apis import add_all_resources
+    api = Api()
     add_all_resources(api)
     api.init_app(app)
 
