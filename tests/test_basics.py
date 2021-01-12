@@ -14,7 +14,7 @@ class BasicsTestCase(unittest.TestCase):
         self.ctx.pop()
 
     def test_helloword(self):
-        response = self.client.get('/helloword')
+        response = self.client.get('/helloworld')
         self.assertEqual(response.status_code, 200)
         data = response.get_data(as_text=True)
         self.assertEqual(data, 'greeting from cowbon')
