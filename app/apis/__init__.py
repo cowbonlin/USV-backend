@@ -12,27 +12,31 @@ class BaseAPI(Resource, ABC, metaclass=MetaAPI):
     @property
     @abstractmethod
     def _model_class(self):
+        """Model class of Sqlalchemy model defined in app.models"""
         raise NotImplementedError
 
     @property
     @abstractmethod
     def mfields(self):
+        """Marsh fields which define types of response data"""
         raise NotImplementedError
 
     @property
     @abstractmethod
     def parser(self):
+        """Parser for the body of POST and PUT method"""
         raise NotImplementedError
 
     def _get_item(self, id):
+        """Get data queried from database"""
         item = self._model_class.query.get(id)
         if not item:
             abort(404, 
                   message=f'ID {id} of Model {self._model_class.__tablename__} does not exist')
         return item
 
-    # The reason of wrapping original get function with @marsh_with deco is that
-    # subclass can't pass mfields variable to @marsh_with
+    # The reason of wrapping original `get` method is that
+    # subclass can't pass mfields variable to @marsh_with decorator
     def get(self, id):
         @marshal_with(self.mfields)
         def _get(self, id):
@@ -47,7 +51,7 @@ class BaseAPI(Resource, ABC, metaclass=MetaAPI):
             try:
                 db.session.commit()
             except Exception as e:
-                print(e)
+                print(type(e), e)
                 db.session.rollback()
                 abort(400, message='Database Error')
             return new_item
@@ -79,9 +83,11 @@ class BaseAPI(Resource, ABC, metaclass=MetaAPI):
         return jsonify(status='success', id=id)
 
 
-from .vehicle import VehicleAPI
-from .mission import MissionAPI
+from app.apis import apis
 
 def add_all_resources(api):
-    api.add_resource(VehicleAPI, '/vehicle/', '/vehicle/<int:id>')
-    api.add_resource(MissionAPI, '/mission/', '/mission/<int:id>')
+    api.add_resource(apis.VehicleAPI, '/vehicle/', '/vehicle/<int:id>')
+    api.add_resource(apis.MissionAPI, '/mission/', '/mission/<int:id>')
+    api.add_resource(apis.RVehMisAPI, '/rvehmis/', '/rvehmis/<int:id>')
+    api.add_resource(apis.AnchorWaypointAPI, '/anchorwaypoint/', '/anchorwaypoint/<int:id>')
+    api.add_resource(apis.CommTypeAPI, '/commtype/', '/commtype/<int:id>')
