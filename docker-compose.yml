@@ -5,8 +5,8 @@ services:
             context: .
             args:
                 - APP_ENV=production
-        ports:
-            - "8000:8000"
+        expose:
+            - 8000
         environment:
             - PYTHONUNBUFFERED=1
         volumes:
@@ -44,6 +44,13 @@ services:
         depends_on:
             - mqtt
         command: python3 run_mqtt_client.py
+
+    nginx:
+        image: nginx:1.18
+        volumes:
+             - ./nginx/conf.d:/etc/nginx/conf.d
+        depends_on:
+            - web
 
 volumes:
     mysql_volume:
