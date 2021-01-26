@@ -27,8 +27,8 @@ class AnchorWaypoint(db.Model):
     __tablename__ = 'anchor_waypoint'
     aid = db.Column(db.Integer, primary_key=True)
     mid = db.Column(db.Integer)
-    globalx = db.Column(db.DECIMAL(11,9))
-    globaly = db.Column(db.DECIMAL(12,9))
+    globalx = db.Column(db.DECIMAL(11, 9))
+    globaly = db.Column(db.DECIMAL(12, 9))
     uwbid = db.Column(db.Integer)
 
 
@@ -39,12 +39,14 @@ class UwbModule(db.Model):
     serial = db.Column(db.Binary)
     # usage: u = UwbModule(address=b'\x6a\x25'); print(u.address.hex())
 
+
 class RUwbVeh(db.Model):
     __tablename__ = 'r_uwb_veh'
     mid = db.Column(db.Integer, primary_key=True)
     vid = db.Column(db.Integer)
     uwbid = db.Column(db.Integer)
     loc = db.Column(db.String(32))
+
 
 class RAnchors(db.Model):
     __tablename__ = 'r_anchors'

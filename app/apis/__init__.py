@@ -1,17 +1,21 @@
 from abc import ABC, ABCMeta, abstractmethod
 from flask import jsonify
 from flask.views import MethodViewType
-from flask_restful import Resource, abort, marshal, marshal_with_field, fields, reqparse
+from flask_restful import Resource, abort, marshal, marshal_with_field, \
+    fields, reqparse
 
 from app import db
+
 
 def validate_order(arg):
     if arg not in ['asc', 'desc']:
         raise TypeError(f'Invalid Order Arugment "{arg}"')
     return arg
 
+
 class MetaAPI(MethodViewType, ABCMeta):
     pass
+
 
 class BaseAPI(Resource, ABC, metaclass=MetaAPI):
     list_parser = reqparse.RequestParser()
@@ -41,13 +45,14 @@ class BaseAPI(Resource, ABC, metaclass=MetaAPI):
         """Get data queried from database"""
         item = self._model_class.query.get(id)
         if not item:
-            abort(400, message=f'ID {id} of Model {self._model_class.__tablename__} does not exist')
+            abort(400,
+                  message=f'{self._model_class.__tablename__}({id}) not exist')
         return item
 
     def get(self, id=None):
         if id is not None:
             return marshal(self._get_item(id), self.mfields), 200
-        
+
         @marshal_with_field(fields.List(fields.Nested(self.mfields)))
         def _get_list(self):
             args = self.list_parser.parse_args()
@@ -65,7 +70,6 @@ class BaseAPI(Resource, ABC, metaclass=MetaAPI):
             return _get_list(self)
         except AttributeError as e:
             abort(400, message=f'{e}')
-
 
     def post(self):
         new_item = self._model_class(**self.parser.parse_args())
@@ -95,13 +99,15 @@ class BaseAPI(Resource, ABC, metaclass=MetaAPI):
         db.session.delete(item_to_d)
         try:
             db.session.commit()
-        except:
+        except Exception as e:
+            print(e)
             db.session.rollback()
-            raise
+            abort(400, message='Database Error')
         return jsonify(status='success', id=id)
 
 
 from app.apis import apis
+
 
 def add_all_resources(api):
     api.add_resource(apis.VehicleAPI, '/vehicles/', '/vehicles/<int:id>')

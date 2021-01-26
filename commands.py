@@ -4,6 +4,7 @@ from app.models import *
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 
+
 @app.cli.command()
 def test():
     print('Flask Command: test')
@@ -13,7 +14,7 @@ def test():
 
 
 @app.cli.command()
-def create_db(): # with command 'flask create-db'
+def create_db():  # with command 'flask create-db'
     print('Flask Command: create-db')
     from app import db
     db.create_all()
