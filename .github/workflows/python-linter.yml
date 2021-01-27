@@ -12,13 +12,10 @@ jobs:
     steps:
     - name: Checkout Code
       uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
 
     - name: Lint Code Base
-      uses: github/super-linter@v3
-      env:
-        VALIDATE_PYTHON_FLAKE8: true
-        PYTHON_FLAKE8_CONFIG_FILE: .flake8
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        DEFAULT_BRANCH: main
+      uses: grantmcconnaughey/lintly-flake8-github-action@v1.0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        failIf: any
+        args: "--exclude=migrations/,instance/ ."
