@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, current_app as app, request
+from flask import Blueprint, jsonify, request
 
 from app import db
 from app.models import MqttRecord

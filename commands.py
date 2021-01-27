@@ -1,6 +1,6 @@
 import os
 from app import create_app
-from app.models import *
+from app.models import *  # noqa: F403,F401
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 

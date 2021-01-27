@@ -17,9 +17,9 @@ class MissionAPI(BaseAPI):
     mfields = {'mid': fields.Integer,
                'mname': fields.String,
                'starttime': fields.DateTime,
-               'endtime': fields.DateTime }
-    
-    #TODO: do validication of datetime arguments
+               'endtime': fields.DateTime}
+
+    # TODO: do validication of datetime arguments
     parser = reqparse.RequestParser()
     parser.add_argument('mname')
     parser.add_argument('starttime', help='format: YYYY-MM-DD HH:MM:SS')

@@ -106,12 +106,12 @@ class BaseAPI(Resource, ABC, metaclass=MetaAPI):
         return jsonify(status='success', id=id)
 
 
-from app.apis import apis
+from app.apis import apis  # noqa: E402
 
 
 def add_all_resources(api):
     api.add_resource(apis.VehicleAPI, '/vehicles/', '/vehicles/<int:id>')
     api.add_resource(apis.MissionAPI, '/missions/', '/missions/<int:id>')
     api.add_resource(apis.RVehMisAPI, '/rvehmiss/', '/rvehmiss/<int:id>')
-    api.add_resource(apis.AnchorWaypointAPI, '/anchorwaypoints/', '/anchorwaypoints/<int:id>')
+    api.add_resource(apis.AnchorWaypointAPI, '/anchorwaypoints/', '/anchorwaypoints/<int:id>')  # noqa: E501
     api.add_resource(apis.CommTypeAPI, '/commtypes/', '/commtypes/<int:id>')

@@ -2,13 +2,14 @@ import unittest
 
 from app import create_app
 
+
 class BasicsTestCase(unittest.TestCase):
     def setUp(self):
         self.app = create_app('testing')
 
         self.ctx = self.app.app_context()
         self.ctx.push()
-        self.client = self.app.test_client() # for HTTP requests
+        self.client = self.app.test_client()  # for HTTP requests
 
     def tearDown(self):
         self.ctx.pop()
