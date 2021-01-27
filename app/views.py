@@ -11,6 +11,7 @@ def helloword():
     return 'greeting from cowbon'
 
 
+
 @views_bp.route('/mqtt-record', methods=['POST'])
 def add_mqtt_record():
     try:
