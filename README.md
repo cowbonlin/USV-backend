@@ -1,4 +1,5 @@
 # usv-backend
+![Python Linter](https://github.com/ARG-NCTU/usv-backend/workflows/Python%20Linter/badge.svg)
 
 ## Start Services 
 ### Dev and Prod
