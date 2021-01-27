@@ -6,6 +6,7 @@ class Vehicle(db.Model):
     __tablename__ = 'vehicle'
     vid = db.Column(db.Integer, primary_key=True)
     vname = db.Column(db.String(32))
+    created_at = db.Column(db.DateTime, default=datetime.now)
 
 
 class Mission(db.Model):
@@ -14,6 +15,7 @@ class Mission(db.Model):
     mname = db.Column(db.String(32))
     starttime = db.Column(db.DateTime())
     endtime = db.Column(db.DateTime())
+    created_at = db.Column(db.DateTime, default=datetime.now)
 
 
 class RVehMis(db.Model):
@@ -21,6 +23,7 @@ class RVehMis(db.Model):
     rvmid = db.Column(db.Integer, primary_key=True)
     mid = db.Column(db.Integer)
     vid = db.Column(db.Integer)
+    created_at = db.Column(db.DateTime, default=datetime.now)
 
 
 class AnchorWaypoint(db.Model):
@@ -30,6 +33,7 @@ class AnchorWaypoint(db.Model):
     globalx = db.Column(db.DECIMAL(11, 9))
     globaly = db.Column(db.DECIMAL(12, 9))
     uwbid = db.Column(db.Integer)
+    created_at = db.Column(db.DateTime, default=datetime.now)
 
 
 class UwbModule(db.Model):
@@ -37,6 +41,7 @@ class UwbModule(db.Model):
     uwbid = db.Column(db.Integer, primary_key=True)
     address = db.Column(db.Binary)
     serial = db.Column(db.Binary)
+    created_at = db.Column(db.DateTime, default=datetime.now)
     # usage: u = UwbModule(address=b'\x6a\x25'); print(u.address.hex())
 
 
@@ -46,6 +51,7 @@ class RUwbVeh(db.Model):
     vid = db.Column(db.Integer)
     uwbid = db.Column(db.Integer)
     loc = db.Column(db.String(32))
+    created_at = db.Column(db.DateTime, default=datetime.now)
 
 
 class RAnchors(db.Model):
@@ -55,6 +61,7 @@ class RAnchors(db.Model):
     aid1 = db.Column(db.Integer)
     aid2 = db.Column(db.Integer)
     edge = db.Column(db.Float)
+    created_at = db.Column(db.DateTime, default=datetime.now)
 
 
 class VehState(db.Model):
@@ -66,6 +73,7 @@ class VehState(db.Model):
     powerlevel = db.Column(db.Integer)
     tempcpu = db.Column(db.Float)
     tempenv = db.Column(db.Float)
+    created_at = db.Column(db.DateTime, default=datetime.now)
 
 
 class VehStatsAnchor(db.Model):
@@ -76,6 +84,7 @@ class VehStatsAnchor(db.Model):
     commtypeid = db.Column(db.Integer)
     range = db.Column(db.Float)
     rssi = db.Column(db.Float)
+    created_at = db.Column(db.DateTime, default=datetime.now)
 
 
 class RVehStateEncounter(db.Model):
@@ -86,12 +95,14 @@ class RVehStateEncounter(db.Model):
     commtypeid = db.Column(db.Integer)
     range = db.Column(db.Float)
     rssi = db.Column(db.Float)
+    created_at = db.Column(db.DateTime, default=datetime.now)
 
 
 class CommType(db.Model):
     __tablename__ = 'commtype'
     cid = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32))
+    created_at = db.Column(db.DateTime, default=datetime.now)
 
 
 class MqttRecord(db.Model):
