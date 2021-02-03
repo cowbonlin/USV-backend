@@ -61,6 +61,7 @@ class UwbModuleAPI(BaseAPI):
                'address': Hex,
                'serial': Hex,
                'created_at': fields.DateTime('iso8601')}
+
     def _hex_to_bytes(s):
         if not s.startswith('0x'):
             raise ValueError('Must start with 0x')
