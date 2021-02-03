@@ -47,7 +47,7 @@ class UwbModule(db.Model):
 
 class RUwbVeh(db.Model):
     __tablename__ = 'r_uwb_veh'
-    mid = db.Column(db.Integer, primary_key=True)
+    ruvid = db.Column(db.Integer, primary_key=True)
     vid = db.Column(db.Integer)
     uwbid = db.Column(db.Integer)
     loc = db.Column(db.String(32))
