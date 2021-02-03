@@ -114,4 +114,7 @@ def add_all_resources(api):
     api.add_resource(apis.MissionAPI, '/missions/', '/missions/<int:id>')
     api.add_resource(apis.RVehMisAPI, '/rvehmiss/', '/rvehmiss/<int:id>')
     api.add_resource(apis.AnchorWaypointAPI, '/anchorwaypoints/', '/anchorwaypoints/<int:id>')  # noqa: E501
+    api.add_resource(apis.UwbModuleAPI, '/uwbmodules/', '/uwbmodules/<int:id>', strict_slashes=False)
+    api.add_resource(apis.RUwbVehAPI, '/ruwbvehs/', '/ruwbvehs/<int:id>')
+    api.add_resource(apis.RAnchorsAPI, '/ranchors/', '/ranchors/<int:id>')
     api.add_resource(apis.CommTypeAPI, '/commtypes/', '/commtypes/<int:id>')
