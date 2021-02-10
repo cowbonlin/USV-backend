@@ -73,6 +73,8 @@ class VehState(db.Model):
     powerlevel = db.Column(db.Integer)
     tempcpu = db.Column(db.Float)
     tempenv = db.Column(db.Float)
+    globalx = db.Column(db.DECIMAL(11, 9))
+    globaly = db.Column(db.DECIMAL(12, 9))
     created_at = db.Column(db.DateTime, default=datetime.now)
 
 
