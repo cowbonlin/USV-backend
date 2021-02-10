@@ -4,8 +4,9 @@ from flask_migrate import Migrate
 from flask_restful import Api
 
 from config import config
+from database.sa import Base
 
-db = SQLAlchemy()
+db = SQLAlchemy(model_class=Base)
 migrate = Migrate()
 
 

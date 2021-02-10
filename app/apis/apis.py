@@ -1,7 +1,7 @@
 from flask_restful import fields, reqparse
 
 from app.apis import BaseAPI
-from app import models
+from database import models
 
 
 class Hex(fields.Raw):
