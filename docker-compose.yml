@@ -36,7 +36,7 @@ services:
         build:
             context: .
             args:
-                REQ_TXT: requirements.mqtt-client.txt
+                REQ_TXT: mqttclient/requirements.txt
         environment:
             - PYTHONUNBUFFERED=1
         volumes:
