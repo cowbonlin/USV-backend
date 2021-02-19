@@ -37,7 +37,7 @@ def create_vehstats_anchor(session, payload):
     except DBAPIError as e:
         print("ERR:", e.orig)
         session.rollback()
-        return    
+        return
 
 
 def create_rvse(session, payload):

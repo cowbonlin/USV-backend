@@ -1,6 +1,6 @@
 from flask_restful import fields, reqparse
 
-from app.apis import BaseAPI
+from app.apis import BaseAPI, MqttBaseAPI
 from database import models
 
 
@@ -110,3 +110,39 @@ class CommTypeAPI(BaseAPI):
                'created_at': fields.DateTime('iso8601')}
     parser = reqparse.RequestParser()
     parser.add_argument('name')
+
+
+class VehStateAPI(MqttBaseAPI):
+    _model_class = models.VehState
+    mfields = {'vsid': fields.Integer,
+               'mid': fields.Integer,
+               'vid': fields.Integer,
+               'timestamp': fields.DateTime('iso8601'),
+               'powerlevel': fields.Integer,
+               'tempcpu': fields.Float,
+               'tempenv': fields.Float,
+               'globalx': fields.Fixed(9),
+               'globaly': fields.Fixed(9),
+               'created_at': fields.DateTime('iso8601')}
+
+
+class VehStatsAnchorAPI(MqttBaseAPI):
+    _model_class = models.VehStatsAnchor
+    mfields = {'vsaid': fields.Integer,
+               'vsid': fields.Integer,
+               'aid': fields.Integer,
+               'commtypeid': fields.Integer,
+               'range': fields.Float,
+               'rssi': fields.Float,
+               'created_at': fields.DateTime('iso8601')}
+
+
+class RVehStateEncounterAPI(MqttBaseAPI):
+    _model_class = models.RVehStateEncounter
+    mfields = {'rvseid': fields.Integer,
+               'vsid': fields.Integer,
+               'vsid2': fields.Integer,
+               'commtypeid': fields.Integer,
+               'range': fields.Float,
+               'rssi': fields.Float,
+               'created_at': fields.DateTime('iso8601')}
