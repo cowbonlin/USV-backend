@@ -12,7 +12,8 @@ class Hex(fields.Raw):
 class VehicleAPI(BaseAPI):
     _model_class = models.Vehicle
     mfields = {'vid': fields.Integer,
-               'vname': fields.String}
+               'vname': fields.String,
+               'created_at': fields.DateTime('iso8601')}
     parser = reqparse.RequestParser()
     parser.add_argument('vname')
 
@@ -22,7 +23,8 @@ class MissionAPI(BaseAPI):
     mfields = {'mid': fields.Integer,
                'mname': fields.String,
                'starttime': fields.DateTime('iso8601'),
-               'endtime': fields.DateTime('iso8601')}
+               'endtime': fields.DateTime('iso8601'),
+               'created_at': fields.DateTime('iso8601')}
 
     # TODO: do validication of datetime arguments
     parser = reqparse.RequestParser()
@@ -35,7 +37,8 @@ class RVehMisAPI(BaseAPI):
     _model_class = models.RVehMis
     mfields = {'rvmid': fields.Integer,
                'mid': fields.Integer,
-               'vid': fields.Integer}
+               'vid': fields.Integer,
+               'created_at': fields.DateTime('iso8601')}
     parser = reqparse.RequestParser()
     parser.add_argument('mid')
     parser.add_argument('vid')
@@ -47,7 +50,8 @@ class AnchorWaypointAPI(BaseAPI):
                'mid': fields.Integer,
                'globalx': fields.Fixed(9),
                'globaly': fields.Fixed(9),
-               'uwbid': fields.Integer}
+               'uwbid': fields.Integer,
+               'created_at': fields.DateTime('iso8601')}
     parser = reqparse.RequestParser()
     parser.add_argument('mid')
     parser.add_argument('globalx', help='Deciaml with the precision of 9')
@@ -76,7 +80,8 @@ class RUwbVehAPI(BaseAPI):
     mfields = {'ruvid': fields.Integer,
                'vid': fields.Integer,
                'uwbid': fields.Integer,
-               'loc': fields.String}
+               'loc': fields.String,
+               'created_at': fields.DateTime('iso8601')}
     parser = reqparse.RequestParser()
     parser.add_argument('vid', type=int)
     parser.add_argument('uwbid', type=int)
@@ -89,7 +94,8 @@ class RAnchorsAPI(BaseAPI):
                'mid': fields.Integer,
                'aid1': fields.Integer,
                'aid2': fields.Integer,
-               'edge': fields.Float}
+               'edge': fields.Float,
+               'created_at': fields.DateTime('iso8601')}
     parser = reqparse.RequestParser()
     parser.add_argument('mid', type=int)
     parser.add_argument('aid1', type=int)
@@ -100,6 +106,7 @@ class RAnchorsAPI(BaseAPI):
 class CommTypeAPI(BaseAPI):
     _model_class = models.CommType
     mfields = {'cid': fields.Integer,
-               'name': fields.String}
+               'name': fields.String,
+               'created_at': fields.DateTime('iso8601')}
     parser = reqparse.RequestParser()
     parser.add_argument('name')
