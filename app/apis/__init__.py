@@ -106,6 +106,19 @@ class BaseAPI(Resource, ABC, metaclass=MetaAPI):
         return jsonify(status='success', id=id)
 
 
+class MqttBaseAPI(BaseAPI):
+    parser = None
+
+    def post(self):
+        abort(405, message='POST method is not allowed within MqttBaseAPI')
+
+    def put(self, id):
+        abort(405, message='PUT method is not allowed within MqttBaseAPI')
+
+    def delete(self, id):
+        abort(405, message='DELETE method is not allowed within MqttBaseAPI')
+
+
 from app.apis import apis  # noqa: E402
 
 
