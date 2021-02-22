@@ -32,7 +32,7 @@ def on_message(client, userdata, msg):
 def on_connect(client, userdata, flags, rc):
     print("[Connected] "+str(rc))
     for topic, _ in TOPIC_HANDLER_MAP.items():
-        client.subscribe(topic)
+        client.subscribe(topic, qos=1)
     client.subscribe("mytopic")
 
 
