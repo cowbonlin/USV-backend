@@ -32,18 +32,18 @@ services:
             - 1883:1883
         restart: unless-stopped
     
-    mqtt-client:
+    mqtt-recv:
         build:
             context: .
             args:
-                REQ_TXT: mqttclient/requirements.txt
+                REQ_TXT: mqttrecv/requirements.txt
         environment:
             - PYTHONUNBUFFERED=1
         volumes:
             - .:/src
         depends_on:
             - mqtt
-        command: python3 run_mqtt_client.py
+        command: python3 run_mqtt_recv.py
 
     nginx:
         image: nginx:1.18
