@@ -24,11 +24,11 @@ $ docker-compose exec web flask db upgrade
 ```
 
 ## Send Files through MQTT
-Event: `image`
-Size Limit: < 268435455 bytes (256 MB)
-File Name Limit: < 256 characters
-File Type: any
-Dest: Files or Images will be storaged in `/images` by default
+* Event: `image`
+* Size Limit: < 268435455 bytes (256 MB)
+* File Name Limit: < 256 characters
+* File Type: any
+* Dest: Files or Images will be storaged in `/images` by default
 
 ### Format
 * File Name: File name with right-padding null characters. (256 chars)
