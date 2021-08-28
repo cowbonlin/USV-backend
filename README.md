@@ -1,8 +1,12 @@
 # usv-backend
 ![Python Linter](https://github.com/ARG-NCTU/usv-backend/workflows/Python%20Linter/badge.svg)
 
+The system is inside the project Robotx in National Chiao Tung University (Taiwan). 
+Robotx aimed to build an intelligent system for unmanned surface vehicle, and this backend system is responsible for receiving sensor data from vehicles through MQTT protocol.
+Important parts of the system includes a web server with Flask (Python), Database (MySQL), and an MQTT broker.
+
+
 ## Start Services 
-### Dev and Prod
 ```
 $ docker-compose up -d
 ```
@@ -47,3 +51,7 @@ You can send files to the local mqtt broker with the test client:
 ```
 $ docker-compose exec mqtt-recv python3 mqttrecv/test-sender.py images/test-tosend/example.png
 ```
+
+## Credits
+This system is developed under Dr. Hsueh-Cheng Nick Wang's supervision. If you are intrested in this project, please contact hchengwang@g2.nctu.edu.tw
+https://robotx-nctu.github.io/
