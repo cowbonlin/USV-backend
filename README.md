@@ -2,8 +2,8 @@
 ![Python Linter](https://github.com/ARG-NCTU/usv-backend/workflows/Python%20Linter/badge.svg)
 
 The system is inside the project Robotx in National Chiao Tung University (Taiwan). 
-Robotx aimed to build an intelligent system for unmanned surface vehicle, and this backend system is responsible for receiving sensor data from vehicles through MQTT protocol.
-Important parts of the system includes a web server with Flask (Python), Database (MySQL), and an MQTT broker.
+Robotx aimed to build an intelligent system for unmanned surface vehicles, and this backend system is responsible for receiving sensor data from vehicles through the MQTT protocol.
+Important parts of the system include a web server with Flask (Python), Database (MySQL), and an MQTT broker.
 
 
 ## Start Services 
